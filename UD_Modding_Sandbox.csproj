@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyName>UD_Modding_Sandbox</AssemblyName>
+		<PackageId>UD_Modding_Sandbox</PackageId>
+		<Authors>UnderDoug</Authors>
+		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+		<Company />
+	</PropertyGroup>
+	<ItemGroup>
+	  <Folder Include="Textures\" />
+	</ItemGroup>
+  <Import Project="../Mods.csproj" />
+</Project>

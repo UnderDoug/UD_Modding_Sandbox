@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <!--object Name="BaseByte" Inherits="Scrap">
+    <part Name="Render" DisplayName="[{{y|byte}}]" DetailColor="y" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Description" Short="A neatly stacked and wrapped set of exactly 8 bits." />
+    <part Name="TinkerItem" CanBuild="true" />
+    <part Name="Commerce" Value="40" />
+    <removetag Name="Scrap" />
+    <removetag Name="DefaultDisassemble" />
+    <removetag Name="NoSparkingQuest" />
+    <tag Name="BaseObject" Value="*noinherit" />
+    <removestag Name="Scrap" />
+    <removetag Name="Breakable" />
+    <part Name="ItemElements" Elements="circuitry::2" />
+  </object-->
+</objects>
