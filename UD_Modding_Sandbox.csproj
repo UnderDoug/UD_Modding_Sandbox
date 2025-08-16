@@ -6,8 +6,11 @@
 		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
 		<Company />
 	</PropertyGroup>
+  <Import Project="../Mods.csproj" />
 	<ItemGroup>
 	  <Folder Include="Textures\" />
 	</ItemGroup>
-  <Import Project="../Mods.csproj" />
+	<ItemGroup>
+	  <ProjectReference Include="..\UD_Modding_Toolbox\UD_Modding_Toolbox.csproj" />
+	</ItemGroup>
 </Project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+  
+  <population Name="CyberkineticTemplarFloatingItemTable">
+		<group Name="Items" Style="pickeach">
+      <table Name="OneCyberkineticTemplarFloatingItem" Number="2" />
+		</group>
+  </population>
+
+	<population Name="CyberkineticTemplarFloatingItems">
+		<group Name="Items" Style="pickeach">
+			<group Name="Item1" Style="pickone">
+				<object Weight="1" Number="1" Blueprint="FloatingAxe" />
+			</group>
+		</group>
+	</population>
+
+	<population Name="OneCyberkineticTemplarFloatingItem">
+		<group Name="Items" Style="pickone">
+      <object Weight="1" Number="1" Blueprint="FloatingAxe" />
+      <object Weight="1" Number="1" Blueprint="FloatingSword" />
+      <object Weight="1" Number="1" Blueprint="FloatingClub" />
+      <object Weight="1" Number="1" Blueprint="FloatingKnife" />
+		</group>
+	</population>
+
+	<population Name="OneCyberkineticTemplarFloatingItemShieldLean">
+		<group Name="Items" Style="pickone">
+      <table Weight="4" Number="1" Name="OneCyberkineticTemplarFloatingItem" />
+      <object Weight="8" Number="1" Blueprint="FloatingShield" />
+		</group>
+	</population>
+
+  <population Name="HolyCyberkineticTemplarFloatingItemTable">
+    <group Name="Items" Style="pickeach">
+      <table Name="OneCyberkineticTemplarFloatingItem" Number="3" />
+      <table Name="OneCyberkineticTemplarFloatingItemShieldLean" Number="1" />
+		</group>
+  </population>
+  
+</populations>

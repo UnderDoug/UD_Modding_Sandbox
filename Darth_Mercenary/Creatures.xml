@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  
+	<object Name="Cyberkinetic-Knight Templar" Inherits="Templar">
+    <part Name="Body" Anatomy="Two_Floating_Humanoid_More_Wearables" />
+    <part Name="Render" ColorString="&amp;Y" TileColor="&amp;B" RenderString="t" Tile="Creatures/sw_templar.bmp" DetailColor="Y" DisplayName="Cyberkinetic-Knight Templar" />
+    <part Name="Description" Short="Oiled and brushed mail hang across =pronouns.possessive= crooked spine and salient jaw. The color too was sucked out of =pronouns.possessive= irises by =pronouns.possessive= tangled lineage, and =pronouns.possessive= wet rosy lips catch the light and toss it back across a sharp sneer. =pronouns.Possessive= back is arched downward in accordance to the tactics of best evasion as shown by countless simulations, and countless more field tests. Each weapon floating nearby is a symbol of honor upheld with the promise of death if not brought by defeat. They clutch a staff with one hand, ready to flip it parralel with the horizon" />
+    <stat Name="Level" Value="24" />
+    <stat Name="Hitpoints" Value="105" />
+		<stat Name="AV" Boost="-3" />
+		<stat Name="DV" Boost="7" />
+    <stat Name="Agility" Boost="2" />
+    <stat Name="Toughness" Boost="1" />
+    <stat Name="Willpower" Boost="1" />
+    <stat Name="HeatResistance" Value="25" />
+    <stat Name="ColdResistance" Value="25" />
+    <stat Name="ElectricResistance" Value="25" />
+		<tag Name="InventoryPopulationTable" Value="CyberkineticTemplarFloatingItemTable" />
+		<inventoryobject Blueprint="Fullerite Plate Mail" />
+    <inventoryobject Blueprint="@Templar Grenades" Number="2" />
+		<skill Name="Shield" />
+		<skill Name="Shield_Block" />
+		<skill Name="Multiweapon_Proficiency" />
+		<skill Name="Multiweapon_Expertise" />
+		<skill Name="Multiweapon_Mastery" />
+	  <skill Name="Axe" />
+		<skill Name="Axe_Expertise" />
+	  <skill Name="LongBlades" />
+		<skill Name="LongBladesProficiency" />
+		<skill Name="Cudgel" />
+		<skill Name="ShortBlades" />
+		<skill Name="ShortBlades_Expertise" />
+    <part Name="CyberneticsHasRandomImplants" ImplantChance="30" ImplantTable="Cybernetics3" LicensesAtLeast="7" />
+  </object>
+
+  <object Name="Cyberkinetic-Knight of the Holy Temple" Inherits="Templar">
+		<part Name="Body" Anatomy="Four_Floating_Humanoid_More_Wearables" />
+    <part Name="Render" ColorString="&amp;Y" TileColor="&amp;B" RenderString="t" Tile="Creatures/sw_templar_leader.bmp" DetailColor="Y" DisplayName="Cyberkinetic-Knight of the Holy Temple" />
+    <part Name="Description" Short="Oiled and brushed mail hang across =pronouns.possessive= crooked spine and salient jaw. The color too was sucked out of =pronouns.possessive= irises by =pronouns.possessive= tangled lineage, and =pronouns.possessive= wet rosy lips catch the light and toss it back across a sharp sneer. =pronouns.Possessive= back is arched downward in accordance to the tactics of best evasion as shown by countless simulations, and countless more field tests. Each weapon floating nearby is a symbol of honor upheld with the promise of death if not brought by defeat; the opulent array showing cedibility to that promise." />
+    <stat Name="Level" Value="27" />
+    <stat Name="Hitpoints" Value="110" />
+		<stat Name="AV" Boost="-1" />
+		<stat Name="DV" Boost="8" />
+    <stat Name="Agility" Boost="4" />
+    <stat Name="Toughness" Boost="1" />
+    <stat Name="Willpower" Boost="1" />
+    <stat Name="HeatResistance" Value="25" />
+    <stat Name="ColdResistance" Value="25" />
+    <stat Name="ElectricResistance" Value="25" />
+    <tag Name="InventoryPopulationTable" Value="HolyCyberkineticTemplarFloatingItemTable" />
+		<inventoryobject Blueprint="Fullerite Plate Mail" />
+    <inventoryobject Blueprint="@Templar Grenades" Number="2" />
+    <inventoryobject Chance="35" Blueprint="Ontological Anchor" Number="1" />
+    <inventoryobject Blueprint="CyberneticsCreditWedge3" />
+    <skill Name="Persuasion" />
+    <skill Name="Persuasion_InspiringPresence" />
+    <skill Name="Persuasion_MenacingStare" />
+    <skill Name="Persuasion_Berate" />
+		<skill Name="Shield" />
+		<skill Name="Shield_Block" />
+	  <skill Name="Shield_DeftBlocking" />
+		<skill Name="Shield_SwiftBlocking" />
+		<skill Name="Multiweapon_Proficiency" />
+		<skill Name="Multiweapon_Expertise" />
+		<skill Name="Multiweapon_Mastery" />
+	  <skill Name="Axe" />
+		<skill Name="Axe_Expertise" />
+		<skill Name="Axe_Dismember" />
+	  <skill Name="LongBlades" />
+		<skill Name="LongBladesProficiency" />
+		<skill Name="LongBladesLunge" />
+		<skill Name="Cudgel" />
+		<skill Name="Cudgel_Bludgeon" />
+		<skill Name="ShortBlades" />
+		<skill Name="ShortBlades_Expertise" />
+		<skill Name="ShortBlades_Rejoinder" />
+    <part Name="CyberneticsHasRandomImplants" ImplantChance="65" ImplantTable="Cybernetics4" LicensesAtLeast="13" />
+  </object>
+  
+</objects>

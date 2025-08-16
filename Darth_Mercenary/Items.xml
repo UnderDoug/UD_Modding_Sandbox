@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+  <object Name="FloatingShield" Inherits="BaseShield">
+    <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} shield" Tile="Items/floatingshield.png" ColorString="&amp;c" DetailColor="y" />
+    <part Name="Shield" AV="4" DV="0" WornOn="Floating Nearby" />
+	  <part Name="Backpack" WeightWhenWorn="0" />
+    <part Name="Description" Short="A chrome wheel hovering in the air, flinching and zipping between you and the loudest sounds nearby." />
+    <part Name="Commerce" Value="15" />
+    <tag Name="Tier" Value="5" />
+	  <stag Name="Floating" />
+    <part Name="Physics" Weight="8" />
+	  <tag Name="EquipmentFrameColors" Value="cycy" />
+	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+
+  <object Name="FloatingAxe" Inherits="BaseAxe">
+    <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} axe" Tile="Items/floatingaxe.png" ColorString="&amp;c" DetailColor="y" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="6" BaseDamage="2d3+3" Slot="Floating Nearby" />
+	  <part Name="Backpack" WeightWhenWorn="0" />
+	  <part Name="Description" Short="An axe made of chrome with a reflection of blue in the right light. The handle vibrates idly in your hands as it tries to adjust to a perfect position, out of your grasp. The pommel has a blue light, and more lights can be seen lining the head of the axe. The majority of its momentum modules are along the head, allowing for the most powerful chopps while cutting costs on usless extra modules." />
+    <part Name="Physics" Weight="5" />
+	  <stag Name="Floating" />
+	  <tag Name="Tier" Value="5" />
+	  <tag Name="EquipmentFrameColors" Value="cycy" />
+	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+  
+  <object Name="FloatingSword" Inherits="BaseLongBlade">
+    <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} longsword" Tile="Items/floatingsword.png" ColorString="&amp;c" DetailColor="y" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="7" BaseDamage="1d11+2" Slot="Floating Nearby" />
+    <part Name="Backpack" WeightWhenWorn="0" />
+	  <part Name="Description" Short="A longsword made of chrome with a reflection of blue in the right light. The handle vibrates idly in your hands as it tries to adjust to a perfect position, out of your grasp. The pommel has a blue light, and more lights can be seen lining the blade of the sword. The majority of its momentum modules are along the blade, allowing for the most powerful slices, such a weapon can bear." />
+	  <part Name="Physics" Weight="8" />
+	  <tag Name="Tier" Value="5" />
+	  <tag Name="EquipmentFrameColors" Value="cycy" />
+	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+ 
+  <object Name="FloatingClub" Inherits="BaseCudgel">
+    <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} club" Tile="Items/floatingclub.png" ColorString="&amp;c" DetailColor="y" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="7" BaseDamage="4d2+1" Slot="Floating Nearby" />
+    <part Name="Backpack" WeightWhenWorn="0" />
+	  <part Name="Description" Short="A club made of chrome with a reflection of blue in the right light. The handle vibrates idly in your hands as it tries to adjust to a perfect position, out of your grasp. The pommel has a blue light, and more lights can be seen circling up round and around the head of the club. The vast majority of its momentum modules are in the head, allowing for the most powerful bashes, with a notable excess on momentum modules to the point that every new one helps less and less. Its fun though, to clobber something with every bit of your might, though the autopilot makes it less fun." />
+	  <part Name="Physics" Weight="5" />
+	  <tag Name="Tier" Value="5" />
+	  <tag Name="EquipmentFrameColors" Value="cycy" />
+	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+  
+  <object Name="FloatingKnife" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} shiv" Tile="Items/floatingknife.png" ColorString="&amp;c" DetailColor="y" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="5" BaseDamage="1d10+2" Slot="Floating Nearby" />
+    <part Name="Backpack" WeightWhenWorn="0" />
+	  <part Name="Description" Short="A shiv made of chrome with a reflection of blue in the right light. The handle vibrates idly in your hands as it tries to adjust to a perfect position, out of your grasp. The pommel has a blue light, and more lights can be seen lining the blade of the shiv. The few momentum modules lie in the blade, compensating for the weak force with less to propell, making the little thing ruthlessly fast, and lacking the need of an expert to use well." />
+	  <part Name="Physics" Weight="3" />
+	  <tag Name="Tier" Value="5" />
+	  <tag Name="EquipmentFrameColors" Value="cycy" />
+	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+  
+</objects>

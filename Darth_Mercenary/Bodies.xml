@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<bodies>
+  
+  <anatomies>
+   <anatomy Name="Two_Floating_Humanoid_More_Wearables">
+    <part Type="Head">
+     <part Type="Face" />
+    </part>
+    <part Type="Back" />
+    <part Type="Arm" Laterality="Right">
+     <part Type="Hand" Laterality="Right" SupportsDependent="Hands" />
+    </part>
+    <part Type="Arm" Laterality="Left">
+     <part Type="Hand" Laterality="Left" SupportsDependent="Hands" />
+    </part>
+    <part Type="Missile Weapon" Laterality="Right" />
+    <part Type="Missile Weapon" Laterality="Left" />
+    <part Type="Hands" DependsOn="Hands" />
+    <part Type="Feet" />
+    <part Type="Floating Nearby" />
+    <part Type="Floating Nearby" />
+   </anatomy>
+
+   <anatomy Name="Four_Floating_Humanoid_More_Wearables">
+    <part Type="Head">
+     <part Type="Face" />
+    </part>
+    <part Type="Back" />
+    <part Type="Arm" Laterality="Right">
+     <part Type="Hand" Laterality="Right" SupportsDependent="Hands" />
+    </part>
+    <part Type="Arm" Laterality="Left">
+     <part Type="Hand" Laterality="Left" SupportsDependent="Hands" />
+    </part>
+    <part Type="Missile Weapon" Laterality="Right" />
+    <part Type="Missile Weapon" Laterality="Left" />
+    <part Type="Hands" DependsOn="Hands" />
+    <part Type="Feet" />
+    <part Type="Floating Nearby" />
+    <part Type="Floating Nearby" />
+    <part Type="Floating Nearby" />
+    <part Type="Floating Nearby" />
+   </anatomy>	
+  </anatomies>
+  
+</bodies>
