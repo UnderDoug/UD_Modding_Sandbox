@@ -17,7 +17,7 @@ namespace UD_Modding_Sandbox.Harmony
             declaringType: typeof(ImportedFoodorDrink),
             methodName: nameof(ImportedFoodorDrink.Generate))]
         [HarmonyPrefix]
-        public static bool Generate_DebugReportCall_Prefix()
+        public static bool Generate_DebugReportCall_Prefix(ref int __state)
         {
             int indent = Debug.LastIndent;
             Debug.Entry(4,
@@ -25,7 +25,7 @@ namespace UD_Modding_Sandbox.Harmony
                 $"{nameof(ImportedFoodorDrink_Patches)}." +
                 $"{nameof(ImportedFoodorDrink.Generate)}()",
                 Indent: indent + 1, Toggle: doDebug);
-            Debug.LastIndent = indent;
+            __state = indent;
             return true;
         }
 
@@ -33,9 +33,9 @@ namespace UD_Modding_Sandbox.Harmony
             declaringType: typeof(ImportedFoodorDrink),
             methodName: nameof(ImportedFoodorDrink.Generate))]
         [HarmonyPostfix]
-        public static void Generate_DebugReportCall_Postfix()
+        public static void Generate_DebugReportCall_Postfix(ref int __state)
         {
-            int indent = Debug.LastIndent;
+            int indent = __state;
             Debug.Entry(4,
                 $"[HarmonyPostfix] " +
                 $"{nameof(ImportedFoodorDrink_Patches)}." +

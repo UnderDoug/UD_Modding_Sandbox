@@ -25,16 +25,17 @@ namespace UD_Modding_Sandbox.Harmony
         {
             int indent = Debug.LastIndent;
 
-            string callingMethod = new System.Diagnostics.StackTrace()?.GetFrame(1)?.GetMethod()?.Name;
-            Debug.Entry(4,
-                $"[HarmonyPrefix]  " +
-                $"{nameof(LiquidVolume_Patches)}." +
-                $"{nameof(LiquidVolume.GetPrimaryLiquid)}() " +
-                $"{nameof(callingMethod)}: {callingMethod}",
-                Indent: indent + 1, Toggle: doDebug);
+            string callingMethod = new System.Diagnostics.StackTrace()?.GetFrame(2)?.GetMethod()?.Name;
 
-            if (callingMethod == nameof(ImportedFoodorDrink.Generate))
+            if (callingMethod.Contains(nameof(ImportedFoodorDrink.Generate)))
             {
+                Debug.Entry(4,
+                    $"[HarmonyPrefix]  " +
+                    $"{nameof(LiquidVolume_Patches)}." +
+                    $"{nameof(LiquidVolume.GetPrimaryLiquid)}() " +
+                    $"{nameof(callingMethod)}: {callingMethod}",
+                    Indent: indent + 1, Toggle: doDebug);
+
                 if (!__instance.ComponentLiquids.IsNullOrEmpty())
                 {
                     foreach ((string liquid, int volume) in __instance.ComponentLiquids)
@@ -56,16 +57,17 @@ namespace UD_Modding_Sandbox.Harmony
         {
             int indent = Debug.LastIndent;
 
-            string callingMethod = new System.Diagnostics.StackTrace()?.GetFrame(1)?.GetMethod()?.Name;
-            Debug.Entry(4,
-                $"[HarmonyPostfix] " +
-                $"{nameof(LiquidVolume_Patches)}." +
-                $"{nameof(LiquidVolume.GetPrimaryLiquid)}() " +
-                $"{nameof(callingMethod)}: {callingMethod}",
-                Indent: indent + 1, Toggle: doDebug);
+            string callingMethod = new System.Diagnostics.StackTrace()?.GetFrame(2)?.GetMethod()?.Name;
 
-            if (callingMethod == nameof(ImportedFoodorDrink.Generate))
+            if (callingMethod.Contains(nameof(ImportedFoodorDrink.Generate)))
             {
+                Debug.Entry(4,
+                    $"[HarmonyPostfix] " +
+                    $"{nameof(LiquidVolume_Patches)}." +
+                    $"{nameof(LiquidVolume.GetPrimaryLiquid)}() " +
+                    $"{nameof(callingMethod)}: {callingMethod}",
+                    Indent: indent + 1, Toggle: doDebug);
+
                 Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {__result?.GetType()?.Name ?? NULL}",
                     Indent: indent + 2, Toggle: doDebug);
 
