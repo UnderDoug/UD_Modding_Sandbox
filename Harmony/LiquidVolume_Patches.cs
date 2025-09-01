@@ -38,10 +38,11 @@ namespace UD_Modding_Sandbox.Harmony
 
                 if (!__instance.ComponentLiquids.IsNullOrEmpty())
                 {
+                    Debug.Entry(4, $"Listing {nameof(__instance.ComponentLiquids)}", Indent: indent + 2, Toggle: doDebug);
                     foreach ((string liquid, int volume) in __instance.ComponentLiquids)
                     {
                         Debug.LoopItem(4, $"{nameof(liquid)}: {liquid}, {nameof(volume)} {volume}",
-                            Indent: indent + 2, Toggle: doDebug);
+                            Indent: indent + 3, Toggle: doDebug);
                     }
                 }
             }
@@ -68,13 +69,17 @@ namespace UD_Modding_Sandbox.Harmony
                     $"{nameof(callingMethod)}: {callingMethod}",
                     Indent: indent + 1, Toggle: doDebug);
 
-                Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {__result?.GetType()?.Name ?? NULL}",
+                string previousResult = __result?.GetType()?.Name;
+                Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {previousResult ?? NULL}",
                     Indent: indent + 2, Toggle: doDebug);
 
                 __result ??= new LiquidCider();
 
-                Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {__result?.GetType()?.Name ?? NULL} (Patched)",
-                    Indent: indent + 2, Toggle: doDebug);
+                if (__result?.GetType()?.Name == previousResult)
+                {
+                    Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {__result?.GetType()?.Name ?? NULL} (Patched)",
+                        Indent: indent + 2, Toggle: doDebug);
+                }
             }
 
             Debug.LastIndent = indent;
