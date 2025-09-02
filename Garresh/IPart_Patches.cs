@@ -16,7 +16,7 @@ namespace Garresh.Harmony
         [HarmonyPostfix]
         public static void UsePsychometry_DescendedFrom_Postfix(ref bool __result, ref GameObject Actor, ref GameObject Subject)
         {
-            if (!__result)
+            if (!__result && false)
             {
                 foreach (Psychometry part in Actor.GetPartsDescendedFrom<Psychometry>())
                 {
