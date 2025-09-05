@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <objects>
 
-  <object Name="FloatingShield" Inherits="BaseShield">
+  <!--object Name="FloatingShield" Inherits="BaseShield">
     <part Name="Render" DisplayName="{{b-B-B-c-c-B-B-b sequence|floating}} shield" Tile="Items/floatingshield.png" ColorString="&amp;c" DetailColor="y" />
     <part Name="Shield" AV="4" DV="0" WornOn="Floating Nearby" />
 	  <part Name="Backpack" WeightWhenWorn="0" />
@@ -57,6 +57,6 @@
 	  <tag Name="Tier" Value="5" />
 	  <tag Name="EquipmentFrameColors" Value="cycy" />
 	  <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
-  </object>
+  </object-->
   
 </objects>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <objects>
-  
-	<object Name="Cyberkinetic-Knight Templar" Inherits="Templar">
+
+  <!--object Name="Cyberkinetic-Knight Templar" Inherits="Templar">
     <part Name="Body" Anatomy="Two_Floating_Humanoid_More_Wearables" />
     <part Name="Render" ColorString="&amp;Y" TileColor="&amp;B" RenderString="t" Tile="Creatures/sw_templar.bmp" DetailColor="Y" DisplayName="Cyberkinetic-Knight Templar" />
     <part Name="Description" Short="Oiled and brushed mail hang across =pronouns.possessive= crooked spine and salient jaw. The color too was sucked out of =pronouns.possessive= irises by =pronouns.possessive= tangled lineage, and =pronouns.possessive= wet rosy lips catch the light and toss it back across a sharp sneer. =pronouns.Possessive= back is arched downward in accordance to the tactics of best evasion as shown by countless simulations, and countless more field tests. Each weapon floating nearby is a symbol of honor upheld with the promise of death if not brought by defeat. They clutch a staff with one hand, ready to flip it parralel with the horizon" />
@@ -75,6 +75,6 @@
 		<skill Name="ShortBlades_Expertise" />
 		<skill Name="ShortBlades_Rejoinder" />
     <part Name="CyberneticsHasRandomImplants" ImplantChance="65" ImplantTable="Cybernetics4" LicensesAtLeast="13" />
-  </object>
+  </object-->
   
 </objects>

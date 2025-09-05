@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <populations>
-  
-  <population Name="CyberkineticTemplarFloatingItemTable">
+
+  <!--population Name="CyberkineticTemplarFloatingItemTable">
 		<group Name="Items" Style="pickeach">
       <table Name="OneCyberkineticTemplarFloatingItem" Number="2" />
 		</group>
@@ -36,6 +36,6 @@
       <table Name="OneCyberkineticTemplarFloatingItem" Number="3" />
       <table Name="OneCyberkineticTemplarFloatingItemShieldLean" Number="1" />
 		</group>
-  </population>
+  </population-->
   
 </populations>
