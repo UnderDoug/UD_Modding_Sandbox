@@ -68,7 +68,7 @@ namespace Garresh.Harmony
                 {
                     MetricsManager.LogModError(ThisMod, $"    {match.name} {match.opcode}");
                 }
-                codeMatcher.Vomit(doVomit);
+                codeMatcher.Vomit(Generator, doVomit);
                 return Instructions;
             }
             metricsCheckSteps++;
@@ -81,7 +81,7 @@ namespace Garresh.Harmony
             codeMatcher.RemoveInstructions(match_If_GlobalSetting_WillpowerRecharge.Length);
 
             MetricsManager.LogModInfo(ThisMod, $"Successfully transpiled {patchMethodName}");
-            return codeMatcher.Vomit(doVomit).InstructionEnumeration();
+            return codeMatcher.Vomit(Generator, doVomit).InstructionEnumeration();
         }
     }
 }
