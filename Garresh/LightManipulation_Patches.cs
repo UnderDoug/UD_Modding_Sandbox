@@ -1,13 +1,17 @@
 ﻿using HarmonyLib;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using UD_Modding_Toolbox;
+
 using XRL;
 using XRL.World;
 using XRL.World.Parts;
 using XRL.World.Parts.Mutation;
 using XRL.World.Tinkering;
+
+using UD_Modding_Toolbox;
+using static UD_Modding_Toolbox.Debug;
 
 using static UD_Modding_Sandbox.Options;
 

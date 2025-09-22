@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>UD_Modding_Sandbox</AssemblyName>
 		<PackageId>UD_Modding_Sandbox</PackageId>
 		<Authors>UnderDoug</Authors>
 		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-		<Company />
+    <BaseIntermediateOutputPath>.dotnet\obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>.dotnet\bin\</BaseOutputPath>
 	</PropertyGroup>
   <Import Project="../Mods.csproj" />
 	<ItemGroup>
