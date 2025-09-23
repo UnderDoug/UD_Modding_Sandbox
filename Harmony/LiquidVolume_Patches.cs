@@ -75,7 +75,7 @@ namespace UD_Modding_Sandbox.Harmony
 
                 __result ??= new LiquidCider();
 
-                if (__result?.GetType()?.Name == previousResult)
+                if (__result?.GetType()?.Name != previousResult)
                 {
                     Debug.LoopItem(4, $"{nameof(BaseLiquid)}: {__result?.GetType()?.Name ?? NULL} (Patched)",
                         Indent: indent + 2, Toggle: doDebug);
