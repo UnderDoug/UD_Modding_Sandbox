@@ -24,6 +24,7 @@ namespace UD_Modding_Sandbox
         // [OptionFlag] public static int DebugVerbosity;
         // [OptionFlag] public static bool DebugIncludeInMessage;
         // [OptionFlag] public static bool DebugGeneralDebugDescriptions;
+        [OptionFlag] public static bool ForceFakeSecretChanceTo100;
 
         // Checkbox settings
         [OptionFlag] public static bool EnableGarreshLightManipTranspile;

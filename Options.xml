@@ -61,6 +61,22 @@
     </helptext>
   </option-->
   
+  <option
+        ID="Option_UD_ModdingSandbox_ForceFakeSecretChanceTo100"
+        DisplayText="{{g|U}}{{G|D}} {{c|Modding}} {{W|Sand}}{{w|box}}: Override the &quot;Fake Secret&quot; chance of the FakeSecret Part to be 100%."
+        Category="Debug"
+        Type="Checkbox"
+        Default="No"
+    >
+    <helptext>
+      When enabled, the FakeSecret part will always bestow a &quot;Fake Secret&quot; when it is &quot;off cooldown&quot;.
+
+      This option makes testing the result of the secrets easier.
+
+      The default is {{w|Disabled}}.
+    </helptext>
+  </option>
+  
   <!-- 
   Mod Options
   -->

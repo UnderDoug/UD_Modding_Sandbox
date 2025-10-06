@@ -1,17 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects>
-  <!--object Name="BaseByte" Inherits="Scrap">
-    <part Name="Render" DisplayName="[{{y|byte}}]" DetailColor="y" />
-    <part Name="Physics" Weight="1" />
-    <part Name="Description" Short="A neatly stacked and wrapped set of exactly 8 bits." />
-    <part Name="TinkerItem" CanBuild="true" />
-    <part Name="Commerce" Value="40" />
-    <removetag Name="Scrap" />
-    <removetag Name="DefaultDisassemble" />
-    <removetag Name="NoSparkingQuest" />
-    <tag Name="BaseObject" Value="*noinherit" />
-    <removestag Name="Scrap" />
-    <removetag Name="Breakable" />
-    <part Name="ItemElements" Elements="circuitry::2" />
-  </object-->
+  <object Name="Psionic Occluder" Inherits="BaseHelmet">
+    <part Name="Armor" AV="1" DV="0" WornOn="Head" />
+    <part Name="Render" DisplayName="psionic occluder"
+          Tile="Items/sw_mental_aggregator.bmp" RenderString="]"
+          ColorString="&amp;m" DetailColor="c" />
+    <part Name="Commerce" Value="890" />
+    <part Name="Description"
+          Short="Planes of metalic wafer are crooked into a bare facsimile of warding primal geometry. Corralled into anti-entropoic channels by implied vertices, the resultant vacuum of energy makes the wearer both difficult to look at, and harder to See..." />
+    <part Name="Physics" Weight="3" Category="Artifacts" />
+    <part Name="Springy" Factor="0.5" />
+    <part Name="Metal" />
+    <part Name="IntPropertyChanger"
+          AffectedProperty="MentalMutationForceShift" Amount="-20"
+          AfterUpdateEvent="SyncMutationLevels"
+          ChargeUse="5"
+          IsBootSensitive="false"
+          IsPowerSwitchSensitive="false"
+          WorksOnWearer="true"
+          MustBeUnderstood="false"
+          IsEMPSensitive="true"
+          IsPowerLoadSensitive="true" PowerLoadBonusDivisor="30"
+          NameForStatus="Psiocclude" />
+    <part Name="Capacitor" Charge="10000" MaxCharge="10000" ChargeRate="20" />
+    <part Name="BroadcastPowerReceiver" />
+    <part Name="FakeSecrets" />
+    <part Name="Examiner" Complexity="5" Difficulty="4" />
+    <part Name="TinkerItem" Bits="03356" CanDisassemble="true" CanBuild="true" />
+    <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+    <part Name="ItemElements" Elements="circuitry::3;;time::2;;stars::2" />
+    <tag Name="EquipSound" Value="sfx_equip_armor_netting" />
+    <tag Name="Tier" Value="6" />
+    <tag Name="DynamicObjectsTable:Headwear" />
+    <stag Name="Anti-Esper" />
+  </object>
 </objects>
