@@ -117,10 +117,10 @@ namespace XRL.World.Parts
                     {
                         List<string> truthColors = new() { "R", "B", "G", "C", "W", "M", };
 
-                        string reality = "{{" + truthColors.DrawRandomToken() + "|REALITY}}";
-                        string pertinent = "{{" + truthColors.DrawRandomToken() + "|PERTITNENT}}";
-                        string weaponised = "{{" + truthColors.DrawRandomToken() + "|WEAPONISED}}";
-                        string idea = "{{" + truthColors.DrawRandomToken() + "|IDEA}}";
+                        string reality = "{{" + truthColors.DrawRandomToken(Filter: null) + "|REALITY}}";
+                        string pertinent = "{{" + truthColors.DrawRandomToken(Filter: null) + "|PERTITNENT}}";
+                        string weaponised = "{{" + truthColors.DrawRandomToken(Filter: null) + "|WEAPONISED}}";
+                        string idea = "{{" + truthColors.DrawRandomToken(Filter: null) + "|IDEA}}";
 
                         Popup.Show(Message:
                             "A geyser of unadulterated " + reality + " errupts in your mind, spraying you with " + pertinent + " facts; " +
