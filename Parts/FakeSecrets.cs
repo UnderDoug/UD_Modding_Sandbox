@@ -81,13 +81,13 @@ namespace XRL.World.Parts
                     Random subjectFakeSecretRnd = subject.GetSeededRandom(nameof(FakeSecrets));
                     Dictionary<Type, int> weightedJournalEntryTypes = new()
                     {
-                        { typeof(JournalGeneralNote), 5 },
+                        { typeof(JournalGeneralNote), 15 },
                         { typeof(JournalMapNote), 5 },
-                        { typeof(JournalObservation), 5 },
-                        { typeof(JournalRecipeNote), 5 },
-                        { typeof(JournalSultanNote), 5 },
+                        { typeof(JournalObservation), 25 },
+                        { typeof(JournalRecipeNote), 15 },
+                        { typeof(JournalSultanNote), 10 },
                         { typeof(JournalVillageNote), 5 },
-                        { typeof(JournalAccomplishment), 5 },
+                        { typeof(JournalAccomplishment), 25 },
                     };
                     // not implemented yet, want to weight the "selection" of the secret away from the 10's of
                     // goatfolk villages and other settlements so the "revealed" secrets feel important.
