@@ -115,7 +115,7 @@ namespace XRL.World.Parts
                     }
                     else
                     {
-                        List<string> truthColors = new() { "R", "B", "G", "C", "W", "M", };
+                        List<char> truthColors = "RBGCWM".ToList();
 
                         string reality = "{{" + truthColors.DrawRandomToken(Filter: null) + "|REALITY}}";
                         string pertinent = "{{" + truthColors.DrawRandomToken(Filter: null) + "|PERTITNENT}}";
