@@ -25,6 +25,8 @@ namespace XRL.World.Parts
         public int TurnsCounter;
         public bool CanLearn;
 
+        Raffle<Type> JournalEntryTypeRaffle;
+
         public FakeSecrets()
         {
             Chance = 5;
@@ -41,6 +43,17 @@ namespace XRL.World.Parts
             IsPowerLoadSensitive = true;
             IsPowerSwitchSensitive = false;
             IsBootSensitive = false;
+
+            JournalEntryTypeRaffle = new()
+            {
+                { typeof(JournalGeneralNote), 15 },
+                { typeof(JournalMapNote), 5 },
+                { typeof(JournalObservation), 25 },
+                { typeof(JournalRecipeNote), 15 },
+                { typeof(JournalSultanNote), 10 },
+                { typeof(JournalVillageNote), 5 },
+                { typeof(JournalAccomplishment), 25 },
+            };
         }
 
         public bool CanBestowFakeSecret()
@@ -79,18 +92,7 @@ namespace XRL.World.Parts
                 if (chance.in100())
                 {
                     Random subjectFakeSecretRnd = subject.GetSeededRandom(nameof(FakeSecrets));
-                    Dictionary<Type, int> weightedJournalEntryTypes = new()
-                    {
-                        { typeof(JournalGeneralNote), 15 },
-                        { typeof(JournalMapNote), 5 },
-                        { typeof(JournalObservation), 25 },
-                        { typeof(JournalRecipeNote), 15 },
-                        { typeof(JournalSultanNote), 10 },
-                        { typeof(JournalVillageNote), 5 },
-                        { typeof(JournalAccomplishment), 25 },
-                    };
-                    // not implemented yet, want to weight the "selection" of the secret away from the 10's of
-                    // goatfolk villages and other settlements so the "revealed" secrets feel important.
+                    Type journalTypeToPull = JournalEntryTypeRaffle.Draw();
 
                     IBaseJournalEntry fakeSecretEntry = JournalAPI.GetKnownNotes().GetRandomElement(subjectFakeSecretRnd);
                     var fakeSecretMapNote = fakeSecretEntry as JournalMapNote;
