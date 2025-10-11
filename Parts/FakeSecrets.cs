@@ -103,7 +103,7 @@ namespace XRL.World.Parts
                     Debug.Entry(4,
                         nameof(FakeSecrets) + "." + nameof(TryBestowSecret), secretText,
                         Indent: indent + 1, Toggle: doDebug);
-                    double cutoffPercent = 0.33 + Stat.RandomCosmetic(-10, 10) * 0.01;
+                    double cutoffPercent = 0.25 + Stat.RandomCosmetic(-7, 7) * 0.01;
                     int cutoff = (int)(secretText.Length * cutoffPercent);
                     int trunc = Math.Min(secretText.Length - 2, secretText.Length - 1 - cutoff);
 
@@ -117,12 +117,12 @@ namespace XRL.World.Parts
                     }
                     else
                     {
-                        List<char> truthColors = "RBGCWM".ToList();
+                        var truthColors = "RGBCKWYM".ToRaffle();
 
-                        string reality = "{{" + truthColors.DrawRandomToken(Filter: null) + "|REALITY}}";
-                        string pertinent = "{{" + truthColors.DrawRandomToken(Filter: null) + "|PERTITNENT}}";
-                        string weaponised = "{{" + truthColors.DrawRandomToken(Filter: null) + "|WEAPONISED}}";
-                        string idea = "{{" + truthColors.DrawRandomToken(Filter: null) + "|IDEA}}";
+                        string reality = "{{" + truthColors.Draw() + "|REALITY}}";
+                        string pertinent = "{{" + truthColors.Draw() + "|PERTITNENT}}";
+                        string weaponised = "{{" + truthColors.Draw() + "|WEAPONISED}}";
+                        string idea = "{{" + truthColors.Draw() + "|IDEA}}";
 
                         Popup.Show(Message:
                             "A geyser of unadulterated " + reality + " errupts in your mind, spraying you with " + pertinent + " facts; " +
