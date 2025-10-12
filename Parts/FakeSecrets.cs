@@ -25,8 +25,6 @@ namespace XRL.World.Parts
         public int TurnsCounter;
         public bool CanLearn;
 
-        Raffle<Type> JournalEntryTypeRaffle;
-
         public FakeSecrets()
         {
             Chance = 5;
@@ -43,17 +41,6 @@ namespace XRL.World.Parts
             IsPowerLoadSensitive = true;
             IsPowerSwitchSensitive = false;
             IsBootSensitive = false;
-
-            JournalEntryTypeRaffle = new()
-            {
-                { typeof(JournalGeneralNote), 15 },
-                { typeof(JournalMapNote), 5 },
-                { typeof(JournalObservation), 25 },
-                { typeof(JournalRecipeNote), 15 },
-                { typeof(JournalSultanNote), 10 },
-                { typeof(JournalVillageNote), 5 },
-                { typeof(JournalAccomplishment), 25 },
-            };
         }
 
         public bool CanBestowFakeSecret()
@@ -84,17 +71,38 @@ namespace XRL.World.Parts
                 CanLearn = false;
                 int chanceMultiplier = 1 + MyPowerLoadBonus();
                 int chance = Chance * chanceMultiplier;
+                Debug.Entry(4, nameof(FakeSecrets) + " " + nameof(chance), chance.ToString(), Indent: indent + 1, Toggle: doDebug);
                 if (ForceChance100)
                 {
                     chance = 100;
                 }
-                bool powerLoaded = MyPowerLoadBonus() > 0;
+                bool powerLoaded = chanceMultiplier > 1;
                 if (chance.in100())
                 {
-                    Random subjectFakeSecretRnd = subject.GetSeededRandom(nameof(FakeSecrets));
-                    Type journalTypeToPull = JournalEntryTypeRaffle.Draw();
-
-                    IBaseJournalEntry fakeSecretEntry = JournalAPI.GetKnownNotes().GetRandomElement(subjectFakeSecretRnd);
+                    // Random subjectFakeSecretRnd = subject.GetSeededRandom();
+                    Dictionary<Type, int> journalEntryTypeWeights = new()
+                    {
+                        { typeof(JournalGeneralNote), 15 },
+                        { typeof(JournalMapNote), 5 },
+                        { typeof(JournalObservation), 25 },
+                        { typeof(JournalRecipeNote), 15 },
+                        { typeof(JournalSultanNote), 10 },
+                        { typeof(JournalVillageNote), 5 },
+                        { typeof(JournalAccomplishment), 25 },
+                    };
+                    Raffle<IBaseJournalEntry> journalEntryRaffle = new(nameof(FakeSecrets)+ ParentObject?.ID + The.CurrentTurn);
+                    foreach (IBaseJournalEntry journalEntry in JournalAPI.GetKnownNotes())
+                    {
+                        Type journalEntryType = journalEntry.GetType();
+                        int journalEntryWeight = 10;
+                        if (journalEntryTypeWeights.ContainsKey(journalEntryType))
+                        {
+                            journalEntryWeight = journalEntryTypeWeights[journalEntryType];
+                        }
+                        journalEntryRaffle.Add(journalEntry, journalEntryWeight);
+                    }
+                    journalEntryRaffle.Vomit(4, nameof(FakeSecrets), nameof(TryBestowSecret), Indent: indent + 1, Toggle: doDebug);
+                    IBaseJournalEntry fakeSecretEntry = journalEntryRaffle.Sample();
                     var fakeSecretMapNote = fakeSecretEntry as JournalMapNote;
                     string secretText = fakeSecretMapNote != null
                         ? "The location of " + Grammar.InitLowerIfArticle(fakeSecretMapNote?.Text)
