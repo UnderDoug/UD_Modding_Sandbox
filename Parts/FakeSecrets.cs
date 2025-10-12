@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 using Qud.API;
-using UD_Modding_Toolbox;
 using XRL.Language;
 using XRL.Rules;
 using XRL.UI;
+using XRL.World.Capabilities;
+
+using UD_Modding_Toolbox;
+using Debug = UD_Modding_Toolbox.Debug;
 
 namespace XRL.World.Parts
 {
@@ -17,6 +21,17 @@ namespace XRL.World.Parts
         private static bool doDebug = true;
 
         private static bool ForceChance100 => UD_Modding_Sandbox.Options.ForceFakeSecretChanceTo100;
+
+        public static Dictionary<Type, int> JournalEntryTypeWeights => new()
+        {
+            { typeof(JournalGeneralNote), 15 },
+            { typeof(JournalMapNote), 5 },
+            { typeof(JournalObservation), 25 },
+            { typeof(JournalRecipeNote), 15 },
+            { typeof(JournalSultanNote), 10 },
+            { typeof(JournalVillageNote), 5 },
+            { typeof(JournalAccomplishment), 25 },
+        };
 
         public int Chance;
         public int MinTurns;
@@ -79,30 +94,25 @@ namespace XRL.World.Parts
                 bool powerLoaded = chanceMultiplier > 1;
                 if (chance.in100())
                 {
-                    // Random subjectFakeSecretRnd = subject.GetSeededRandom();
-                    Dictionary<Type, int> journalEntryTypeWeights = new()
-                    {
-                        { typeof(JournalGeneralNote), 15 },
-                        { typeof(JournalMapNote), 5 },
-                        { typeof(JournalObservation), 25 },
-                        { typeof(JournalRecipeNote), 15 },
-                        { typeof(JournalSultanNote), 10 },
-                        { typeof(JournalVillageNote), 5 },
-                        { typeof(JournalAccomplishment), 25 },
-                    };
                     Raffle<IBaseJournalEntry> journalEntryRaffle = new(nameof(FakeSecrets)+ ParentObject?.ID + The.CurrentTurn);
                     foreach (IBaseJournalEntry journalEntry in JournalAPI.GetKnownNotes())
                     {
                         Type journalEntryType = journalEntry.GetType();
                         int journalEntryWeight = 10;
-                        if (journalEntryTypeWeights.ContainsKey(journalEntryType))
+                        if (JournalEntryTypeWeights.ContainsKey(journalEntryType))
                         {
-                            journalEntryWeight = journalEntryTypeWeights[journalEntryType];
+                            journalEntryWeight = JournalEntryTypeWeights[journalEntryType];
                         }
                         journalEntryRaffle.Add(journalEntry, journalEntryWeight);
                     }
-                    journalEntryRaffle.Vomit(4, nameof(FakeSecrets), nameof(TryBestowSecret), Indent: indent + 1, Toggle: doDebug);
-                    IBaseJournalEntry fakeSecretEntry = journalEntryRaffle.Sample();
+
+                    IBaseJournalEntry fakeSecretEntry = journalEntryRaffle.Draw();
+
+                    journalEntryRaffle.Vomit(4, 
+                        nameof(FakeSecrets), nameof(TryBestowSecret), 
+                        ShowChance: true, Drawn: fakeSecretEntry, 
+                        Indent: indent + 1, Toggle: doDebug);
+
                     var fakeSecretMapNote = fakeSecretEntry as JournalMapNote;
                     string secretText = fakeSecretMapNote != null
                         ? "The location of " + Grammar.InitLowerIfArticle(fakeSecretMapNote?.Text)
@@ -111,11 +121,14 @@ namespace XRL.World.Parts
                     Debug.Entry(4,
                         nameof(FakeSecrets) + "." + nameof(TryBestowSecret), secretText,
                         Indent: indent + 1, Toggle: doDebug);
+
                     double cutoffPercent = 0.25 + Stat.RandomCosmetic(-7, 7) * 0.01;
                     int cutoff = (int)(secretText.Length * cutoffPercent);
                     int trunc = Math.Min(secretText.Length - 2, secretText.Length - 1 - cutoff);
 
                     secretText = secretText[..trunc].Color("y") + "...";
+
+                    AutoAct.Interrupt("you need to think for a sec..", subject.CurrentCell);
 
                     if (!powerLoaded)
                     {
@@ -125,12 +138,11 @@ namespace XRL.World.Parts
                     }
                     else
                     {
-                        var truthColors = "RGBCKWYM".ToRaffle();
-
-                        string reality = "{{" + truthColors.Draw() + "|REALITY}}";
-                        string pertinent = "{{" + truthColors.Draw() + "|PERTITNENT}}";
-                        string weaponised = "{{" + truthColors.Draw() + "|WEAPONISED}}";
-                        string idea = "{{" + truthColors.Draw() + "|IDEA}}";
+                        var truthColors = "RGBCWYM".ToRaffle();
+                        string reality = "{{" + truthColors.DrawCosmetic() + "|REALITY}}";
+                        string pertinent = "{{" + truthColors.DrawCosmetic() + "|PERTITNENT}}";
+                        string weaponised = "{{" + truthColors.DrawCosmetic() + "|WEAPONISED}}";
+                        string idea = "{{" + truthColors.DrawCosmetic() + "|IDEA}}";
 
                         Popup.Show(Message:
                             "A geyser of unadulterated " + reality + " errupts in your mind, spraying you with " + pertinent + " facts; " +
