@@ -9,12 +9,14 @@ using XRL.Language;
 using XRL.Rules;
 using XRL.UI;
 using XRL.World.Capabilities;
+using XRL.Wish;
 
 using UD_Modding_Toolbox;
 using Debug = UD_Modding_Toolbox.Debug;
 
 namespace XRL.World.Parts
 {
+    [HasWishCommand]
     [Serializable]
     public class FakeSecrets : IPoweredPart
     {
@@ -208,6 +210,18 @@ namespace XRL.World.Parts
             E.AddEntry(this, nameof(JournalAPI.GetKnownNotes) + "." + nameof(string.IsNullOrEmpty), JournalAPI.GetKnownNotes().IsNullOrEmpty());
             E.AddEntry(this, nameof(JournalAPI.GetKnownNotes) + "." + nameof(List<IBaseJournalEntry>.Count), JournalAPI.GetKnownNotes().Count());
             return base.HandleEvent(E);
+        }
+
+        [WishCommand(Command: "psionic occluder test kit")]
+        public static bool GivePsionicOccluder_WishHandler()
+        {
+            return The.Player.ReceiveObject("Psionic Occluder")
+                && The.Player.ReceiveObject("Psionic Occluder", 
+                BeforeObjectCreated: GO => 
+                { 
+                    GO.ApplyModification(nameof(ModOverloaded));
+                    GO.ApplyModification(nameof(ModSturdy)); 
+                });
         }
     }
 }

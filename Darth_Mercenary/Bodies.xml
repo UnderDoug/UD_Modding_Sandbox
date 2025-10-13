@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <bodies>
-  
-  <anatomies>
+
+  <!--anatomies>
    <anatomy Name="Two_Floating_Humanoid_More_Wearables">
     <part Type="Head">
      <part Type="Face" />
@@ -41,6 +41,6 @@
     <part Type="Floating Nearby" />
     <part Type="Floating Nearby" />
    </anatomy>	
-  </anatomies>
+  </anatomies-->
   
 </bodies>

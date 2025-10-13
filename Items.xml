@@ -12,7 +12,7 @@
     <part Name="Springy" Factor="0.5" />
     <part Name="Metal" />
     <part Name="IntPropertyChanger"
-          AffectedProperty="MentalMutationForceShift" Amount="-20"
+          AffectedProperty="MentalMutationLevelModifier" Amount="-20"
           AfterUpdateEvent="SyncMutationLevels"
           ChargeUse="5"
           IsBootSensitive="false"
