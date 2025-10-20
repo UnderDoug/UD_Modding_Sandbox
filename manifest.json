@@ -9,6 +9,6 @@
     "LoadAfter": [ "UD_Modding_Toolbox", "UD_Vendor_Actions" ],
     "Dependencies": {
         "UD_Modding_Toolbox": ">=0.1.0",
-        "UD_Vendor_Actions": ">=0.0.2"
+        "UD_Vendor_Actions": ">=0.0.3"
     }
 }
