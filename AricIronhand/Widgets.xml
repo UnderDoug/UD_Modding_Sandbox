@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="AricIronhand_RubbleWallOrNothing" Inherits="Widget">
+    <part Name="Render" DisplayName="*rubble wall or nothing"
+          Tile="Tiles2/sw_rubble_1.bmp" ColorString="&amp;r" 
+          TileColor="&amp;r" DetailColor="K" />
+    <part Name="ReplaceObject" SeedWithZoneID="false" Table="AricIronhand_RubbleWallOrNothing" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+  <object Name="AricIronhand_Nothing" Inherits="Widget">
+    <part Name="AricIronhand_ObliterateSelf" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
+</objects>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+  <population Name="AricIronhand_RubbleWallOrNothing">
+    <group Name="Options" Style="pickone">
+      <object Weight="1" Blueprint="EbonFulcrete" />
+      <object Weight="3" Blueprint="Rubble Grey" />
+      <object Weight="2" Blueprint="AricIronhand_Nothing" />
+    </group>
+  </population>
+</populations>
