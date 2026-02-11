@@ -4,6 +4,8 @@ using XRL;
 using XRL.World;
 using XRL.Wish;
 using XRL.UI;
+using System.Collections.Generic;
+using System.Linq;
 namespace XRL.World.Parts
 {
     [PlayerMutator]
@@ -129,6 +131,29 @@ namespace XRL.World.Parts
                 return true;
             }
             return false;
+        }
+        public static List<string> DistinctSpecies = null;
+
+        [WishCommand(Command = "show species")]
+        public static bool ShowSpecies_WishHandler()
+        {
+            if (DistinctSpecies == null)
+                DistinctSpecies = GameObjectFactory.Factory
+                    ?.BlueprintList
+                    ?.Where(bp => bp.HasTag("Species"))
+                    ?.Select(bp => bp.GetTag("Species"))
+                    ?.Distinct()
+                    ?.ToList();
+            if (DistinctSpecies.IsNullOrEmpty())
+            {
+                Popup.Show("There are no species in the game??");
+                return false;
+            }
+            Popup.Show(
+                Message: DistinctSpecies
+                    ?.Aggregate("", (a, n) => a + (!a.IsNullOrEmpty() ? "\n" : null) + n),
+                Title: "Species List");
+            return true;
         }
     }
 }
