@@ -12,7 +12,8 @@ using XRL.World.Capabilities;
 using XRL.Wish;
 
 using UD_Modding_Toolbox;
-using Debug = UD_Modding_Toolbox.Debug;
+using Debug = UD_Modding_Toolbox.Logging.Debug;
+using UD_Modding_Toolbox.Collections;
 
 namespace XRL.World.Parts
 {

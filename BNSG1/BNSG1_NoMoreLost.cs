@@ -10,7 +10,8 @@ namespace XRL.World.Parts
         public override bool WantEvent(int ID, int Cascade)
         {
             return base.WantEvent(ID, Cascade)
-                || ID == ApplyEffectEvent.ID;
+                // || ID == ApplyEffectEvent.ID
+                ;
         }
 
         public override bool HandleEvent(ApplyEffectEvent E)
