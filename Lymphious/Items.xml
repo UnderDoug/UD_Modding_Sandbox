@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+  <object Name="Apeirogon" Inherits="BasePistol">
+    <part Name="Render" DisplayName="{{psionic|Apeirogon}}"
+          ColorString="&amp;B" TileColor="&amp;M" DetailColor="B"
+          Tile="psychgun.png" />
+    <part Name="Description" Short="Searing azure photons are derived from the monad, metamorphosing into a star whose infinite points asymptote on formlessness. Psych is shorn and braided into the shape of violence, as wafer-thin strands of pure light drill into the palm and weave thoughtstuff into raw kinetic power." />
+    <part Name="MissileWeapon" Skill="Pistol" AmmoChar="&amp;m&#236;" ShotsPerAction="1" AmmoPerAction="1" ShotsPerAnimation="1" AnimationDelay="16" WeaponAccuracy="3" />
+    <part Name="AIStopShootingImmuneTargets" />
+    <part Name="Commerce" Value="1200" />
+    <part Name="BootSequence" BootTime="5" ReadoutInName="true" ReadoutInDescription="true" />
+    <part Name="ZeroPointEnergyCollector" ChargeRate="40" World="JoppaWorld,OrbWorld" />
+    <part Name="UD_StatAmmoLoader"
+          Stat="Ego"
+          PercentCostPerShot="4"
+          StatValueFloor="16"
+          TurnsPerStack="5"
+          AffectedByWillpower="true"
+          PowerVerb="feed"
+          ProjectileObject="ProjectileApeirogon"
+          IsEMPSensitive="true"
+          IsRealityDistortionBased="true" />
+    <part Name="Circuitry" />
+    <!--<part Name="Cursed" RevealInDescription="false" />
+	-->
+    <part Name="EquipStatBoost" Boosts="Ego:-1" />
+    <part Name="Examiner" Complexity="8" Difficulty="2" />
+    <part Name="LightSource" OnlyIfCharged="true" Lit="true" Radius="5" />
+    <tag Name="Mods" Value="MissileWeaponMods,FirearmMods,CommonMods,PistolMods" />
+    <tag Name="Tier" Value="8" />
+    <part Name="Physics" Weight="1" Organic="true" />
+    <intproperty Name="Bleeds" Value="1" />
+    <tag Name="BleedLiquid" Value="blood-1000" />
+    <tag Name="LiveAnimal" />
+    <tag Name="Species" Value="living flesh" />
+    <tag Name="MissileFireSound" Value="Sounds/Missile/Fires/Pistols/sfx_missile_handRail_fire" />
+    <tag Name="ReloadSound" Value="Sounds/Missile/Reloads/sfx_missile_psychalFleshgun_reload" />
+    <tag Name="DynamicObjectsTable:Guns" />
+  </object>
+
+  <object Name="ProjectileApeirogon" Inherits="TemporaryEnergyProjectile">
+    <part Name="Render" DisplayName="{{B|searing light}}" ColorString="&amp;B" />
+    <part Name="Projectile" BasePenetration="0" BaseDamage="1d9" Attributes="Mental Psionic" LightBased="true" PenetrateCreatures="true" PenetrateWalls="true" ColorString="&amp;B" PassByVerb="streak" />
+    <tag Name="Light" />
+  </object>
+
+</objects>
