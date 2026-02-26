@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conversations>
+  <conversation ID="Tam">
+    <start ID="Welcome">
+      <text>
+        =player.ApparentSpecies=? We are greeted! What do you desire?
+      </text>     
+    </start>
+  </conversation>
+
+  <conversation ID="DromadTrader">
+    <node ID="Start">
+      <text>
+        =player.ApparentSpecies=? We are greeted! What do you desire?
+      </text>
+    </node>
+  </conversation>
+</conversations>
