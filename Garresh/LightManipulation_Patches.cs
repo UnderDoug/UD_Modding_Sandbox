@@ -11,7 +11,7 @@ using XRL.World.Parts.Mutation;
 using XRL.World.Tinkering;
 
 using UD_Modding_Toolbox;
-using static UD_Modding_Toolbox.Logging.Debug;
+using static UD_Modding_Toolbox.Debug;
 
 using static UD_Modding_Sandbox.Options;
 
