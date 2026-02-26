@@ -166,13 +166,18 @@ namespace XRL.World.Parts
                             ReturnNullForEscape: true) is string newCustomSpecies)
                             newValue = newCustomSpecies;
 
-                        if (isTechnical)
-                            Species = newValue;
-                        else
-                            DisplaySpecies = newValue;
+                        if (newValue != null) // escape returns null, do nothing if escaped.
+                        {
+                            if (newValue == "")     // if empty string (but not escaped)
+                                newValue = null;    // set to null (to "delete" the value")
 
-                        if (!newValue.IsNullOrEmpty())
-                            Popup.Show($"Your new {(isTechnical ? "technical" : "display")} species is {newValue}!");
+                            if (isTechnical)
+                                Species = newValue;
+                            else
+                                DisplaySpecies = newValue;
+
+                            Popup.Show($"Your new {(isTechnical ? "technical" : "display")} species is {(isTechnical ? Species : DisplaySpecies)}!");
+                        }
 
                         return true;
                     }
