@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using XRL.World;
+
 using XRL.World.Parts;
 
 using Kjorteo.SpeciesManager;
@@ -14,7 +13,7 @@ namespace XRL.CharacterBuilds.Qud
         /// Do not include the information from this module in build codes.
         /// </summary>
         public override bool IncludeInBuildCodes()
-            => true;
+            => false;
 
         /// <summary>
         /// This module should automatically be enabled.
@@ -25,7 +24,7 @@ namespace XRL.CharacterBuilds.Qud
         public override object handleBootEvent(string id, XRLGame game, EmbarkInfo info, object element = null)
         {
             if (id == QudGameBootModule.BOOTEVENT_GAMESTARTING
-                && (Kjorteo_SpeciesManagerPatches.EmbarkSpeciesData ?? info.getData<PlayerSpeciesData>()) is var speciesData
+                && (Kjorteo_SpeciesManager_Patches.EmbarkSpeciesData ?? info.getData<PlayerSpeciesData>()) is var speciesData
                 && The.Player?.RequirePart<Kjorteo_SpeciesManager>() is var speciesManager)
             {
                 try

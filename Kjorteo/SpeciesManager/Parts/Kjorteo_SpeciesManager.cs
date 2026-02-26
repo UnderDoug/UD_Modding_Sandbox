@@ -22,14 +22,18 @@ namespace XRL.World.Parts
     [Serializable]
     public class Kjorteo_SpeciesManager : IPlayerPart, IPlayerMutator
     {
-        public static PlayerSpeciesData EmbarkSpeciesData => Kjorteo_SpeciesManagerPatches.EmbarkSpeciesData;
+        public static PlayerSpeciesData EmbarkSpeciesData => Kjorteo_SpeciesManager_Patches.EmbarkSpeciesData;
 
         public const string CHANGE_SPECIES_COMMAND = "Cmd_Kjorteo_ChangeSpecies";
         public const string CHANGE_DISPLAY_SPECIES_COMMAND = "Cmd_Kjorteo_ChangeDisplaySpecies";
         public const string CUSTOM_ENTRY = "{{W|custom entry}}";
 
-        static readonly List<char> HotKeysMain = new() { 'a', 'b', 'c', 'd', 'e', 'f' };
-        static readonly List<string> OptionsMain = new()
+        public const string DISGUISE_WARNING_1 = " {{R|(Disguised)}}\n\n{{r|NOTE: You are currently disguised. Your Display Species will only show as the species you are currently disguised as. To see your true Display Species, please remove your disguise.}}";
+
+        public const string DISGUISE_WARNING_2 = "\n\n{{r|NOTE: You are currently disguised. Changing your Display Species now will change your {{R|undisguised}} Display Species only. Your Display Species will continue to show the species you are disguised as so long as you remain disguised, but the change you enter here will take effect as soon as you remove your disguise.}}";
+
+        static readonly char[] HotKeysMain = new char[] { 'a', 'b', 'c', 'd', 'e', 'f' };
+        static readonly string[] OptionsMain = new string[]
         {
             "Change technical species by list",
             "Change technical species by free entry",
@@ -129,11 +133,20 @@ namespace XRL.World.Parts
                     string currentValue = isTechnical ? Species : (DisplaySpecies ?? Species ?? "");
                     string newValue = null;
 
+                    string disguiseWarning1 = null;
+                    string disguiseWarning2 = null;
+                    if (!isTechnical && ParentObject.HasEffect<Disguised>())
+                    {
+                        disguiseWarning1 = DISGUISE_WARNING_1;
+                        disguiseWarning2 = DISGUISE_WARNING_2;
+                    }
+
                     string remarks = "{{y|" + (isTechnical ? "(An empty string will fall back to blueprint species)" : "(An empty string will delete this entry)") + "}}";
 
                     string intro = "{{W|" + $"Here are the existing technical species held by all objects in this world excluding the player. " +
                         $"Select one to change your {(isTechnical? "technical" : "display")} species to match.\n\n" +
-                        $"Pick \"{CUSTOM_ENTRY}\" to enter your own!\n\n" + "}}"; 
+                        $"Pick \"{CUSTOM_ENTRY}\" to enter your own!\n\n" + "}}"+
+                        disguiseWarning1; 
 
                     if (Popup.PickOption(Title: "Species Manager",
                         Intro: intro,
@@ -145,16 +158,14 @@ namespace XRL.World.Parts
                         string selectedValue = distinctSpecies[selectionTSpecies];
                         if (selectionTSpecies != 0
                             || selectedValue != CUSTOM_ENTRY)
-                        {
                             newValue = selectedValue;
-                        }
                         else
                         if (Popup.AskString(
-                            Message: "{{W|" + $"What is your new {(isTechnical ? "technical" : "display")} species?\n" + remarks + "}}",
-                            Default: currentValue ?? "") is string newCustomSpecies)
-                        {
+                            Message: "{{W|" + $"What is your new {(isTechnical ? "technical" : "display")} species?\n" + remarks + "}}" + disguiseWarning2,
+                            Default: currentValue ?? "",
+                            ReturnNullForEscape: true) is string newCustomSpecies)
                             newValue = newCustomSpecies;
-                        }
+
                         if (isTechnical)
                             Species = newValue;
                         else
@@ -192,6 +203,15 @@ namespace XRL.World.Parts
                     DisplaySpecies = speciesManager.DisplaySpecies,
                 };
                 int selectionMain = -1; // Variable for the chosen main menu option
+
+                string disguiseWarning1 = null; // Attaches to the end of the listed Display Species line if the player is currently disguised
+                string disguiseWarning2 = null; // Attaches to the window asking the player for their new Display Species if they're currently disguised
+                if (The.Player.HasEffect<Disguised>())
+                {
+                    disguiseWarning1 = DISGUISE_WARNING_1;
+                    disguiseWarning2 = DISGUISE_WARNING_2;
+                }
+
                 while (true) // This loop will keep going unless/until the player manually breaks it.
                 {
                     selectionMain = Popup.PickOption(
@@ -200,10 +220,10 @@ namespace XRL.World.Parts
                             + speciesData.TechnicalSpecies + "\n"
                             + "\n"
                             + "&WYour current display species is:&y\n"
-                            + speciesData.DisplaySpecies + "\n"
+                            + speciesData.DisplaySpecies + disguiseWarning1 + "\n"
                             + "\n",
-                        Options: OptionsMain.ToArray(),
-                        Hotkeys: HotKeysMain.ToArray(),
+                        Options: OptionsMain,
+                        Hotkeys: HotKeysMain,
                         AllowEscape: true);
 
                     if (selectionMain == -1
@@ -246,7 +266,7 @@ namespace XRL.World.Parts
 
                         case 2: // Happens when the player has chosen to change display species
                             if (Popup.AskString(
-                                Message: "&WWhat is your new display species? (An empty string will delete this entry)",
+                                Message: "&WWhat is your new display species? (An empty string will delete this entry)" + disguiseWarning2,
                                 Default: speciesData.DisplaySpecies) is string newDisplaySpecies)
                                 speciesData.DisplaySpecies = newDisplaySpecies;
                             break;

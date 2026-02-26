@@ -2,9 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using XRL;
 using XRL.CharacterBuilds;
@@ -19,15 +18,19 @@ using XRL.World.Parts;
 namespace Kjorteo.SpeciesManager.Patches
 {
     [HasGameBasedStaticCache]
-    [HarmonyPatch(typeof(QudCustomizeCharacterModuleWindow))]
-    public static class Kjorteo_SpeciesManagerPatches
+    [HarmonyPatch]
+    internal static class Kjorteo_SpeciesManager_Patches
     {
+        internal static string LastSpeciesFilesPath => Kjorteo_EmbarkBuilder_Patches.LastSpeciesFilesPath;
+        internal static string LastCharacterCode => Kjorteo_EmbarkBuilder_Patches.LastCharacterCode;
+
         private const string SPECIES_MANAGER_TECHNICAL_ID = "Kjorteo_SpeciesManager_Technical";
         private const string SPECIES_MANAGER_DISPLAY_ID = "Kjorteo_SpeciesManager_Display";
 
         public static PlayerSpeciesData EmbarkSpeciesData = new();
+        public static bool LoadededFromLast = false;
 
-        public static string GetPlayerBlueprint()
+        private static string GetPlayerBlueprint()
         {
             var builder = GameManager.Instance.gameObject.GetComponent<EmbarkBuilder>();
             if (builder is null)
@@ -40,7 +43,7 @@ namespace Kjorteo.SpeciesManager.Patches
             return builder.info?.fireBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECTBLUEPRINT, The.Game, body);
         }
 
-        public static GameObjectBlueprint GetPlayerModel()
+        private static GameObjectBlueprint GetPlayerModel()
             => GameObjectFactory.Factory.GetBlueprintIfExists(GetPlayerBlueprint());
 
         [HarmonyPatch(
@@ -49,7 +52,8 @@ namespace Kjorteo.SpeciesManager.Patches
         [HarmonyPostfix]
         private static void Init_InstantiateData_Postfix()
         {
-            EmbarkSpeciesData = new();
+            if (!LoadededFromLast)
+                EmbarkSpeciesData = new();
         }
 
         [HarmonyPatch(
@@ -141,17 +145,49 @@ namespace Kjorteo.SpeciesManager.Patches
                     else
                     if (await Popup.AskStringAsync(
                         Message: "{{W|" + $"What is your new {(isTechnical ? "technical" : "display")} species?\n" + remarks + "}}",
-                        Default: currentValue ?? "") is string newCustomSpecies)
+                        Default: currentValue ?? "",
+                        ReturnNullForEscape: true) is string newCustomSpecies)
                         newValue = newCustomSpecies;
 
-                    if (isTechnical)
-                        EmbarkSpeciesData.TechnicalSpecies = newValue;
-                    else
-                        EmbarkSpeciesData.DisplaySpecies = newValue;
+                    if (newValue != null) // escape returns null, do nothing if escaped.
+                    {
+                        if (newValue == "")     // if empty string (but not escaped)
+                            newValue = null;    // set to null (to "delete" the value")
+
+                        if (isTechnical)
+                            EmbarkSpeciesData.TechnicalSpecies = newValue;
+                        else
+                            EmbarkSpeciesData.DisplaySpecies = newValue;
+                    }
 
                     _jankstance.UpdateUI();
                 }
             }
+        }
+
+        [HarmonyPatch(
+            declaringType: typeof(QudChartypeModule),
+            methodName: nameof(QudChartypeModule.selectType),
+            argumentTypes: new Type[] { typeof(string) },
+            argumentVariations: new ArgumentType[] { ArgumentType.Normal })]
+        [HarmonyPrefix]
+        private static bool selectType_LoadFromLast_Prefix(string type)
+        {
+            if (type == "Last"
+                && File.Exists(LastSpeciesFilesPath)
+                && File.ReadAllText(LastSpeciesFilesPath) is string lastSpeciesRaw
+                && lastSpeciesRaw.Split("\n") is string[] fileParts
+                && fileParts.Length > 1
+                && fileParts[0] == LastCharacterCode
+                && fileParts[1] is string speciesCode)
+            {
+                LoadededFromLast = true;
+                EmbarkSpeciesData = PlayerSpeciesData.LoadCode(speciesCode);
+            }
+            else
+                LoadededFromLast = false;
+
+            return true;
         }
     }
 }
