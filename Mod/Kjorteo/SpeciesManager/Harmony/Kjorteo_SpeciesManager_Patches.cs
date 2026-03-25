@@ -21,8 +21,8 @@ namespace Kjorteo.SpeciesManager.Patches
     [HarmonyPatch]
     internal static class Kjorteo_SpeciesManager_Patches
     {
-        internal static string LastSpeciesFilesPath => Kjorteo_EmbarkBuilder_Patches.LastSpeciesFilesPath;
-        internal static string LastCharacterCode => Kjorteo_EmbarkBuilder_Patches.LastCharacterCode;
+        //internal static string LastSpeciesFilesPath => Kjorteo_EmbarkBuilder_Patches.LastSpeciesFilesPath;
+        //internal static string LastCharacterCode => Kjorteo_EmbarkBuilder_Patches.LastCharacterCode;
 
         private const string SPECIES_MANAGER_TECHNICAL_ID = "Kjorteo_SpeciesManager_Technical";
         private const string SPECIES_MANAGER_DISPLAY_ID = "Kjorteo_SpeciesManager_Display";
@@ -165,6 +165,7 @@ namespace Kjorteo.SpeciesManager.Patches
             }
         }
 
+        /*
         [HarmonyPatch(
             declaringType: typeof(QudChartypeModule),
             methodName: nameof(QudChartypeModule.selectType),
@@ -189,5 +190,6 @@ namespace Kjorteo.SpeciesManager.Patches
 
             return true;
         }
+        */
     }
 }

@@ -29,5 +29,5 @@ namespace UD_Modding_Sandbox
         // Checkbox settings
         [OptionFlag] public static bool EnableGarreshLightManipTranspile;
 
-    } //!-- public static class Options
+    }
 }

@@ -16,6 +16,7 @@ namespace Kjorteo.SpeciesManager.Patches
     [HarmonyPatch]
     internal static class Kjorteo_EmbarkBuilder_Patches
     {
+        /*
         internal static string LastSpeciesFilesPath => DataManager.SavePath("Kjorteo_lastspecies.txt");
         internal static string LastCharacterCode => File.ReadAllText(DataManager.SavePath("lastcharacter.txt"));
 
@@ -109,5 +110,6 @@ namespace Kjorteo.SpeciesManager.Patches
                     )
                 .Instructions()
                 ;
+        */
     }
 }
