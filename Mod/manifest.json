@@ -6,9 +6,8 @@
     "author": "{{K-g-G-Y-G-g-K alternation|UnderDoug}}",
     "tags": "Unfinished,Broken,Experimental",
     "PreviewImage": "preview.png",
-    "LoadAfter": [ "UD_Modding_Toolbox", "UD_Vendor_Actions" ],
+    "LoadAfter": [ "UD_Modding_Toolbox" ],
     "Dependencies": {
-        "UD_Modding_Toolbox": ">=0.1.0",
-        "UD_Vendor_Actions": ">=0.0.3"
+        "UD_Modding_Toolbox": ">=0.1.0"
     }
 }
